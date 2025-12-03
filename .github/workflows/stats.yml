@@ -14,10 +14,30 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Generate Stats SVG
+      - name: Generate Contribution Stats
         uses: cicirello/user-statistician@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          image-file: images/github-stats.svg
-          commit-and-push: true
+          image-file: images/contributions.svg
+          category-order: contributions
+          commit-and-push: false
+          
+      - name: Generate Language Stats (Animated)
+        uses: cicirello/user-statistician@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          image-file: images/languages.svg
+          category-order: languages
+          animated-language-chart: true
+          language-animation-speed: 10
+          commit-and-push: false
+
+      - name: Commit all stats
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add images/*.svg
+          git diff --quiet && git diff --staged --quiet || git commit -m "Update GitHub stats"
+          git push
