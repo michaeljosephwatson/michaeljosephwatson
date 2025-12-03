@@ -17,14 +17,7 @@ jobs:
       - name: Generate Stats SVG
         uses: cicirello/user-statistician@v1
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          hide: stars,forks
-          image-path: images/github-stats.svg
-
-      - name: Commit updated stats
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "Update GitHub stats"
-          file_pattern: images/github-stats.svg
+          image-file: images/github-stats.svg
+          commit-and-push: true
