@@ -1,0 +1,26 @@
+name: Generate GitHub Stats
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:       
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Generate Stats SVG
+        uses: cicirello/user-statistician@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          hide: stars,forks
+          image-path: images/github-stats.svg
+
+      - name: Commit updated stats
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Update GitHub stats"
+          file_pattern: images/github-stats.svg
