@@ -21,6 +21,8 @@ jobs:
         with:
           image-file: images/contributions.svg
           category-order: contributions
+          include-title: false
+          show-border: false
           commit-and-push: false
           
       - name: Generate Language Stats (Animated)
@@ -32,6 +34,9 @@ jobs:
           category-order: languages
           animated-language-chart: true
           language-animation-speed: 10
+          include-title: false
+          show-border: false
+          colors: vibrant
           commit-and-push: false
 
       - name: Commit all stats
