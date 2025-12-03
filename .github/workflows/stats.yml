@@ -14,30 +14,21 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Generate Contribution Stats
-        uses: cicirello/user-statistician@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          image-file: images/contributions.svg
-          category-order: contributions
-          include-title: false
-          show-border: false
-          commit-and-push: false
+          node-version: '18'
+
+      - name: Generate Stats Images
+        run: |
+          # Create images directory
+          mkdir -p images
           
-      - name: Generate Language Stats (Animated)
-        uses: cicirello/user-statistician@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          image-file: images/languages.svg
-          category-order: languages
-          animated-language-chart: true
-          language-animation-speed: 10
-          include-title: false
-          show-border: false
-          colors: vibrant
-          commit-and-push: false
+          # Generate contribution stats
+          curl -o images/contributions.svg "https://github-readme-stats.vercel.app/api?username=michaeljosephwatson&show_icons=true&hide_title=true&hide_border=true&hide=stars,prs,issues,contribs&show=reviews,prs_merged,prs_merged_percentage&theme=radical&rank_icon=github"
+          
+          # Generate language stats with donut chart
+          curl -o images/languages.svg "https://github-readme-stats.vercel.app/api/top-langs/?username=michaeljosephwatson&layout=donut&hide_title=true&hide_border=true&theme=radical&langs_count=8&exclude_repo=forked-repo"
 
       - name: Commit all stats
         run: |
