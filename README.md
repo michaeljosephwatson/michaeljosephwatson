@@ -1,8 +1,8 @@
-<div align="center">
+<div align="left">
 
 # Michael Watson
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=24&pause=1000&color=7AA2F7&center=true&vCenter=true&width=435&lines=Junior+Data+Engineer;Building+Data+Pipelines;Transforming+Data+Into+Insights" alt="Typing SVG" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=24&pause=1000&color=7AA2F7&center=true&vCenter=true&width=435&lines=Junior+Data+Engineer" alt="Typing SVG" />
 
 #### Connect
 [LinkedIn](https://www.linkedin.com/in/michaelmikeywatson/) • [Email](mailto:michaeljosephwatson@yahoo.com)
